@@ -82,11 +82,13 @@ TASS((function () {/*
 
 a {
 	@include foo(#000, #111);
+	@include foo(#000, rgba(0, 0, 0, 0.5));
 }
 */}).here()),
 (function () {/*
 a {
 foo : #000 #111;
+foo : #000 rgba(0, 0, 0, 0.5);
 }
 */}).here(),
 'mixin'
