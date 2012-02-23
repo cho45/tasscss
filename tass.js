@@ -36,7 +36,6 @@ function TASS (c) {
 		if (close) {
 			var poped = level.pop();
 			nesting.length = nesting.length / poped.length;
-			if (!nesting.length) nesting = [ [] ];
 			for (var i = 0, len = nesting.length; i < len; i++) nesting[i].pop();
 			return (nesting[0].length ? "" : "}");
 		}
