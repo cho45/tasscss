@@ -44,8 +44,8 @@
 						<section class="w2" id="download">
 							<h1>Check it out!</h1>
 							<pre>
-&lt;link rel="stylesheet/tass" type="text/x-tass" href="styles.tass"/>
-&lt;script type="text/javascript" src="tass.js">&lt;/script>
+&lt;<span class="Statement">link</span> rel=<span class="Constant">&quot;stylesheet/tass&quot;</span> type=<span class="Constant">&quot;text/x-tass&quot;</span> href=<span class="Constant">&quot;styles.tass&quot;</span>/<span class="Special">&gt;</span>
+&lt;<span class="Statement">script</span> type=<span class="Constant">&quot;text/javascript&quot;</span> src=<span class="Constant">&quot;tass.js&quot;</span><span class="Special">&gt;</span>&lt;/<span class="Statement">script</span><span class="Special">&gt;</span>
 </pre>
 							<p class="download"><a href="https://raw.github.com/cho45/tasscss/master/lib/tass.js" class="button">Download</a></p>
 						</section>
@@ -55,54 +55,54 @@
 						<section class="w3">
 							<h1>Variables</h1>
 							<pre>
-$base-color : #333;
-$base-back  : #fff;
+<span class="Identifier">$base-color</span> : <span class="Constant">#333</span>;
+<span class="Identifier">$base-back</span>  : <span class="Constant">#fff</span>;
 
-body {
-  color: $base-color;
-  background: $base-back;
-}
+<span class="Statement">body</span> <span class="Identifier">{</span>
+  color: <span class="Identifier">$base-color</span>;
+  background: <span class="Identifier">$base-back</span>;
+<span class="Identifier">}</span>
 
-.invert {
-  background: $base-color;
-  color: $base-back;
-}
+<span class="Special">.</span><span class="Type">invert</span> <span class="Identifier">{</span>
+  background: <span class="Identifier">$base-color</span>;
+  color: <span class="Identifier">$base-back</span>;
+<span class="Identifier">}</span>
 </pre>
 							<p>You can give unambiguous meaning to values by naming it and reuse it in other rules.</p>
 						</section>
 						<section class="w3">
 							<h1>Nesting</h1>
 							<pre>
-blockquote {
-  font-style: italic;
+<span class="Statement">blockquote</span> <span class="Identifier">{</span>
+  font-style: <span class="Type">italic</span>;
 
-  ul, ol {
-    margin: 1em 0;
-    padding: 0;
+  <span class="Statement">ul</span><span class="Normal">,</span> <span class="Statement">ol</span> <span class="Identifier">{</span>
+    margin: <span class="Constant">1em</span> <span class="Constant">0</span>;
+    padding: <span class="Constant">0</span>;
 
-    li {
-      padding: 0 0 0 2em;
-    }
-  }
-}
+    <span class="Statement">li</span> <span class="Identifier">{</span>
+      padding: <span class="Constant">0</span> <span class="Constant">0</span> <span class="Constant">0</span> <span class="Constant">2em</span>;
+    <span class="Identifier">}</span>
+  <span class="Identifier">}</span>
+<span class="Identifier">}</span>
 </pre>
 							<p>Also supports nesting selectors.</p>
 						</section>
 						<section class="w3">
 							<h1>Mixins</h1>
 							<pre>
-@mixin linear-gradient ($color1, $color2) {
-  background: $color1;
-  background: -webkit-linear-gradient(top, $color1 0%, $color2 100%);
-  background: -moz-linear-gradient(top, $color1 0%, $color2 100%);
-  background: -o-linear-gradient(top, $color1 0%, $color2 100%);
-  background: -ms-linear-gradient(top, $color1 0%, $color2 100%);
-  background: linear-gradient(top, $color1 0%, $color2 100%);
-}
+<span class="PreProc">@mixin</span> linear-gradient (<span class="Identifier">$color1</span>, <span class="Identifier">$color2</span>) <span class="Identifier">{</span>
+  background: <span class="Identifier">$color1</span>;
+  background: -webkit-linear-gradient(<span class="Type">top</span>, <span class="Identifier">$color1</span> <span class="Constant">0%</span>, <span class="Identifier">$color2</span> <span class="Constant">100%</span>);
+  background: -moz-linear-gradient(<span class="Type">top</span>, <span class="Identifier">$color1</span> <span class="Constant">0%</span>, <span class="Identifier">$color2</span> <span class="Constant">100%</span>);
+  background: -o-linear-gradient(<span class="Type">top</span>, <span class="Identifier">$color1</span> <span class="Constant">0%</span>, <span class="Identifier">$color2</span> <span class="Constant">100%</span>);
+  background: -ms-linear-gradient(<span class="Type">top</span>, <span class="Identifier">$color1</span> <span class="Constant">0%</span>, <span class="Identifier">$color2</span> <span class="Constant">100%</span>);
+  background: linear-gradient(<span class="Type">top</span>, <span class="Identifier">$color1</span> <span class="Constant">0%</span>, <span class="Identifier">$color2</span> <span class="Constant">100%</span>);
+<span class="Identifier">}</span>
 
-h1 { @include linear-gradient(#fff, #ccc) }
-h2 { @include linear-gradient(#333, #000) }
-h3 { @include linear-gradient(#999, #333) }
+<span class="Statement">h1</span> <span class="Identifier">{</span> <span class="PreProc">@include</span> linear-gradient(<span class="Constant">#fff</span>, <span class="Constant">#ccc</span>) <span class="Identifier">}</span>
+<span class="Statement">h2</span> <span class="Identifier">{</span> <span class="PreProc">@include</span> linear-gradient(<span class="Constant">#333</span>, <span class="Constant">#000</span>) <span class="Identifier">}</span>
+<span class="Statement">h3</span> <span class="Identifier">{</span> <span class="PreProc">@include</span> linear-gradient(<span class="Constant">#999</span>, <span class="Constant">#333</span>) <span class="Identifier">}</span>
 </pre>
 							<p>Reuse design component.</p>
 						</section>
@@ -113,20 +113,20 @@ h3 { @include linear-gradient(#999, #333) }
 							<h1>Usage</h1>
 							<h2>Try it</h2>
 							<pre>
-&lt;link rel="stylesheet/tass" type="text/x-tass" href="styles.tass"/>
-&lt;script type="text/javascript" src="tass.js">&lt;/script>
+&lt;<span class="Statement">link</span> rel=<span class="Constant">&quot;stylesheet/tass&quot;</span> type=<span class="Constant">&quot;text/x-tass&quot;</span> href=<span class="Constant">&quot;styles.tass&quot;</span>/<span class="Special">&gt;</span>
+&lt;<span class="Statement">script</span> type=<span class="Constant">&quot;text/javascript&quot;</span> src=<span class="Constant">&quot;tass.js&quot;</span><span class="Special">&gt;</span>&lt;/<span class="Statement">script</span><span class="Special">&gt;</span>
 </pre>
 
 							<h2>For production</h2>
 							<!--pre>
-npm install tass
-tass -watch style.tass:style.css
+$ npm install tass
+$ tass -watch style.tass:style.css
 </pre-->
 
 
 							<pre>
-npm install tass
-tass style.tass > style.css
+$ npm install tass
+$ tass style.tass > style.css
 </pre>
 						</section>
 					</div>

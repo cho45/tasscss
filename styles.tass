@@ -156,3 +156,10 @@ h1, h2, h3, h4, h5, h6 {
 	.powered {
 	}
 }
+
+.Type { color: #afaf5f; font-weight: bold; }
+.Special { color: #ffd7af; }
+.Statement { color: #87d7af; font-weight: bold; }
+.Constant { color: #d7875f; }
+.Identifier { color: #5f8787; }
+.PreProc { color: #d75f5f; }
