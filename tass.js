@@ -12,12 +12,24 @@ function TASS (c) {
 		return '';
 	});
 
-	c = c.replace(/@include \s*([\w\-]+)(\([^\)]+\))?\s*;/g, function (_, name, args) {
+	c = c.replace(/@include \s*([\w\-]+)(\(.*?\))?\s*;/g, function (_, name, args) {
 		var mixin = mixins[name];
 		if (!mixin) return '/* unknown mixin: ' + name + '*/';
 		var content = mixin.content;
 		if (args) {
 			args = args.slice(1, -1).split(/\s*,\s*/);
+			for (var i = 0, len = args.length, inp = false; i < len; i++) {
+				if (~args[i].indexOf('(')) {
+					inp = true;
+				} else
+				if (inp) {
+					if (~args[i].indexOf(')')) inp = false;
+					args[ i - 1 ] += ', ' + args[i];
+					args.splice(i, 1);
+					len--;
+					i--;
+				}
+			}
 			for (var i = 0, len = mixin.args.length; i < len; i++) {
 				// prepend variable expression
 				content = mixin.args[i] + " : " + args[i] + ";\n" + content;
