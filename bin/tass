@@ -1,0 +1,47 @@
+#!/usr/bin/env node
+// # vim:set ft=javascript:
+var TASS = require('../lib/tass').TASS;
+
+var fs = require('fs');
+var opts = {
+	watch : [],
+	files : []
+};
+var args = process.argv.slice(2);
+
+for (var i = 0, len = args.length; i < len; i++) {
+	if (args[i].match(/--watch/)) {
+		opts.watch.push(args[i++]);
+	} else
+	if (args[i].match(/--version|-v/)) {
+		console.error('tass version: ' + TASS.version);
+	} else
+	if (args[i].match(/--\S+|-\S+/)) {
+		console.error('Unknown option: ' + args[i]);
+		process.exit(1);
+	} else {
+		opts.files.push(args[i]);
+	}
+}
+
+if (opts.watch) {
+	console.log('Not implemenented: tass filename.tass > filename.css');
+	process.exit(1);
+}
+
+if (opts.files[0] == '-') {
+	process.stdin.resume();
+	process.stdin.setEncoding('utf8');
+
+	var css = '';
+	process.stdin.on('data', function (data) { css += data; });
+	process.stdin.on('end', function () {
+		console.log(TASS(css));
+	});
+} else {
+	opts.files.forEach(function (file) {
+		console.log(TASS(fs.readFileSync(file, 'utf-8')));
+	});
+}
+
+

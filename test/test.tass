@@ -1,6 +1,14 @@
 $base : #fff;
 $color: #000;
 
+#global-header {
+	$base : #666;
+	$color: #ccc;
+
+	background: $base;
+	color: $color;
+}
+
 @mixin table-base {
 	th {
 		text-align: center;

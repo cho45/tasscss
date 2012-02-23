@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>TASS - Ultimate lightweight stylesheet language</title>
+		<meta charset="utf-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+		<link href='http://fonts.googleapis.com/css?family=Voltaire' rel='stylesheet' type='text/css'/>
+		<link rel="stylesheet/tass" type="text/x-tass" href="styles.tass"/>
+		<script type="text/javascript" src="tass.js"></script>
+
+		<!--[if lt IE 9]>
+		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+	</head>
+	<body>
+		<div id="whole">
+			<header id="top">
+				<h1><a href="/">TASS</a></h1>
+				<p class="description">Ultimate lightweight stylesheet language</p>
+			</header>
+
+			<div id="content">
+				<div id="content-inner">
+					<div class="line">
+						<section class="w2">
+							<h1>Ultimate lightweight</h1>
+							<p>Back to the source. TASS does not supply any complex syntaxes or functions, so this is just little better CSS.</p>
+							<p>TASS is like SCSS in SASS and can be used with only browsers like LESS because written in JavaScript.</p>
+						</section>
+						<section class="w2" id="download">
+							<h1>Usage</h1>
+							<pre>
+&lt;link rel="stylesheet/tass" type="text/x-tass" href="styles.tass"/>
+&lt;script type="text/javascript" src="tass.js">&lt;/script>
+</pre>
+							<p class="download"><a href="" class="button">Download</a></p>
+						</section>
+					</div>
+
+					<div class="line">
+						<section class="w3">
+							<h1>Variables</h1>
+							<pre>
+$base-color : #333;
+$base-back  : #fff;
+
+body {
+  color: $base-color;
+  background: $base-back;
+}
+
+.invert {
+  background: $base-color;
+  color: $base-back;
+}
+</pre>
+							<p>You can give unambiguous meaning to values by naming it and reuse it in other rules.</p>
+						</section>
+						<section class="w3">
+							<h1>Nesting</h1>
+							<pre>
+blockquote {
+  font-style: italic;
+
+  ul, ol {
+    margin: 1em 0;
+    padding: 0;
+
+    li {
+      padding: 0 0 0 2em;
+    }
+  }
+}
+</pre>
+							<p>Also supports nesting selectors.</p>
+						</section>
+						<section class="w3">
+							<h1>Mixins</h1>
+							<pre>
+@mixin linear-gradient ($color1, $color2) {
+  background: $color1;
+  background: -webkit-linear-gradient(top, $color1 0%, $color2 100%);
+  background: -moz-linear-gradient(top, $color1 0%, $color2 100%);
+  background: -o-linear-gradient(top, $color1 0%, $color2 100%);
+  background: -ms-linear-gradient(top, $color1 0%, $color2 100%);
+  background: linear-gradient(top, $color1 0%, $color2 100%);
+}
+
+h1 { @include linear-gradient(#fff, #ccc) }
+h2 { @include linear-gradient(#333, #000) }
+h3 { @include linear-gradient(#999, #333) }
+</pre>
+							<p>Reuse design component.</p>
+						</section>
+					</div>
+
+					<div class="line">
+						<section class="w1">
+							<h1>Usage</h1>
+							<pre>
+npm install tass
+tass --watch style.tass:style.css
+</pre>
+						</section>
+					</div>
+
+					<div class="line">
+						<section class="w1">
+							<h1>Syntax</h1>
+						</section>
+					</div>
+
+					<div class="line">
+						<section class="w1">
+							<h1>Development</h1>
+							<p>TASS is developed at github.</p>
+						</section>
+					</div>
+				</div>
+			</div>
+
+			<footer id="global-footer">
+				<p class="copyright">Copyright &copy; 2012 cho45 <a href="http://www.lowreal.net">www.lowreal.net</a></p>
+				<p class="powered">Powerd by TASS</p>
+			</footer>
+		</div>
+	</body>
+</html>
