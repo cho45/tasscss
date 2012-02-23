@@ -105,7 +105,15 @@ pre {
 	opacity: 0.9;
 	overflow: hidden;
 	@include box-shadow(0 0 5px rgba(0, 0, 0, 0.5));
+	@include box-shadow(inset 0 0 10px rgba(0, 0, 0, 0.8));
 	@include border-radius(10px);
+
+	.Type { color: #afaf5f; font-weight: bold; }
+	.Special { color: #ffd7af; }
+	.Statement { color: #87d7af; font-weight: bold; }
+	.Constant { color: #d7875f; }
+	.Identifier { color: #5f8787; }
+	.PreProc { color: #d75f5f; }
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -156,10 +164,3 @@ h1, h2, h3, h4, h5, h6 {
 	.powered {
 	}
 }
-
-.Type { color: #afaf5f; font-weight: bold; }
-.Special { color: #ffd7af; }
-.Statement { color: #87d7af; font-weight: bold; }
-.Constant { color: #d7875f; }
-.Identifier { color: #5f8787; }
-.PreProc { color: #d75f5f; }
