@@ -1,0 +1,61 @@
+
+$base : #fff;
+$color: #000;
+
+@mixin table-base {
+	th {
+		text-align: center;
+		font-weight: bold;
+	}
+	td, th {padding: 2px}
+}
+
+@mixin button {
+	content : "this is button";
+}
+
+html, body {
+	background: $base;
+	color: $color;
+}
+
+a {
+	&:link {
+	}
+
+	&:hover {
+	}
+}
+
+nav, #navigation {
+	ul, ol {
+		padding: 0;
+		margin: 0;
+
+		li {
+			padding: 0;
+			margin: 0;
+			display: inline-block;
+		}
+	}
+}
+
+#header {
+	padding: 10px;
+
+	&:hover {
+		text-decoration: none;
+	}
+
+	h1 {
+		font-size: 100%;
+	}
+}
+
+button, .button, input[type=button] {
+	@include button;
+}
+
+table {
+	@include table-base;
+}
