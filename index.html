@@ -118,39 +118,97 @@
 					<div class="line">
 						<section class="w1">
 							<h1>Usage</h1>
-							<h2>Try it</h2>
-							<pre>
+
+							<section>
+								<h1>Try it</h1>
+								<pre>
 &lt;<span class="Statement">link</span> rel=<span class="Constant">&quot;stylesheet/tass&quot;</span> type=<span class="Constant">&quot;text/x-tass&quot;</span> href=<span class="Constant">&quot;styles.tass&quot;</span>/<span class="Special">&gt;</span>
 &lt;<span class="Statement">script</span> type=<span class="Constant">&quot;text/javascript&quot;</span> src=<span class="Constant">&quot;tass.js&quot;</span><span class="Special">&gt;</span>&lt;/<span class="Statement">script</span><span class="Special">&gt;</span>
 </pre>
 
-							<h2>For production</h2>
-							<!--pre>
+							</section>
+							<section>
+								<h1>For production</h1>
+								<!--pre>
 $ npm install tass
 $ tass -watch style.tass:style.css
 </pre-->
 
 
-							<pre>
+								<pre>
 $ npm install tass
 $ tass style.tass > style.css
 </pre>
+							</section>
 						</section>
 					</div>
 
-					<!-- div class="line">
-						<section class="w1">
-							<h1>Syntax</h1>
-						</section>
-					</div -->
-
 					<div class="line">
 						<section class="w1">
+							<h1>Syntax</h1>
+
+							<section>
+								<h1>Variables</h1>
+								<section>
+									<h1>Definition</h1>
+									<p>Variable definition is by leading $ and written by property style. There must be no other leading characters exclude white-space.</p>
+									<pre>
+$varname : varvalue; /* ok */
+
+foo { $varname : varvalue; } /* ng */
+</pre>
+								</section>
+								<section>
+									<h1>Scope</h1>
+									<p>Braces creates new variable scope like following:</p>
+									<pre>
+$foo : foo;
+prop : $foo; /* foo */
+bar {
+	$foo : bar;
+	prop : $foo; /* bar */
+}
+prop : $foo; /* foo */
+</pre>
+								</section>
+							</section>
+							<section>
+								<h1>Mixins</h1>
+								<p>Mixins are defined by leading <code>@mixin mixin-name {</code> and end with <code>}</code>. There must be no any characters (includes white-space) before start mixin (<code>@mixin</code>) and end of mixin brace (<code>}</code>). And inner of a mixin must be indented.</p>
+								<pre>
+/* ok */
+@mixin mixin-name {
+	foobar {
+	}
+}
+
+/* ng */
+ @mixin mixin-name {
+	foobar {
+	}
+ }
+
+/* ng */
+@mixin mixin-name {
+foobar {
+}
+}
+</pre>
+							</section>
+						</section>
+					</div>
+
+					<div class="line">
+						<section class="w2">
 							<h1>Development</h1>
-							<p>TASS is developed at <a href="https://github.com/cho45/tasscss">github</a>.</p>
 							<pre>
 $ git clone git://github.com/cho45/tasscss.git
 </pre>
+							<p>TASS is developed at <a href="https://github.com/cho45/tasscss">github</a>. Fork it and push-request.</p>
+						</section>
+						<section class="w2">
+							<h1>Bugs?</h1>
+							<p>Please report it to <a href="https://github.com/cho45/tasscss/issues">github issue</a> or fix and push-request.</p>
 						</section>
 					</div>
 				</div>
