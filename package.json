@@ -12,7 +12,7 @@
   "directories": {
   },
   "author": "cho45 <cho45@lowreal.net> (http:\/\/www.lowreal.net\/)",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "licenses": [
     {
       "url": "http:\/\/github.com\/cho45\/jsdeferred\/blob\/master\/jsdeferred.js",
