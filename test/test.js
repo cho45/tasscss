@@ -5,134 +5,31 @@ TAP();
 var fs = require('fs');
 var TASS = require('../lib/tass.js').TASS;
 
-Function.prototype.here = function () { return this.toString().split(/\n/).slice(1, -1).join("\n") };
+var tests = fs.readFileSync('test/base.data', 'utf-8').split(/^===/mg).map(function (test, name) {
+	test = test.replace(/^(.+)/, '');
+	name = RegExp.$1;
+	test = test.split(/\s*--->\s*/).map(function (s) {
+		return s.replace(/^\s*|\s*$/g, '');
+	});
 
-is(TASS(''), '');
+	return {
+		name : name,
+		input : test[0],
+		expected : test[1]
+	};
+});
+tests.shift();
 
-is(
-TASS((function () {/*
-a,
-b {
-	l1 : foo;
-
-	c, d {
-		l2 : foo;
-		e, f {
-			l3 : foo;
-		}
+tests.forEach(function (test) {
+	var output = TASS(test.input);
+	if (output === test.expected) {
+		ok(true, test.name);
+	} else {
+		ok(false, test.name);
+		console.log("# expected:\n" + test.expected.replace(/^/gm, "#   "));
+		console.log("# got:\n" + output.replace(/^/gm, "#   "));
 	}
-}
-*/}).here()),
-(function () {/*
-a,
-b {
-l1 : foo;
-}
-a c,
-a d,
-b c,
-b d {
-l2 : foo;
-}
-a c e,
-a c f,
-a d e,
-a d f,
-b c e,
-b c f,
-b d e,
-b d f {
-l3 : foo;
-}
-*/}).here(),
-'nesting'
-);
-
-
-is(
-TASS((function () {/*
-@mixin foo {
-	foo : bar;
-}
-
-a {
-	@include foo;
-}
-
-b {
-	@include foo;
-}
-*/}).here()),
-(function () {/*
-a {
-foo : bar;
-}
-b {
-foo : bar;
-}
-*/}).here(),
-'mixin'
-);
-
-is(
-TASS((function () {/*
-@mixin foo ($a, $b) {
-	foo : $a $b;
-}
-
-a {
-	@include foo(#000, #111);
-	@include foo(#000, rgba(0, 0, 0, 0.5));
-}
-*/}).here()),
-(function () {/*
-a {
-foo : #000 #111;
-foo : #000 rgba(0, 0, 0, 0.5);
-}
-*/}).here(),
-'mixin'
-);
-
-is(
-TASS((function () {/*
-$foo : foo;
-$bar : bar;
-
-foo : $foo;
-bar : $bar;
-
-scope1 {
-	$foo : foo1;
-	foo : $foo;
-	bar : $bar;
-	scope2 {
-		$foo : foo2;
-		$bar : bar2;
-		foo : $foo;
-		bar : $bar;
-	}
-}
-
-foo : $foo;
-bar : $bar;
-*/}).here()),
-(function () {/*
-foo : foo;
-bar : bar;
-scope1 {
-foo : foo1;
-bar : bar;
-}
-scope1 scope2 {
-foo : foo2;
-bar : bar2;
-}
-foo : foo;
-bar : bar;
-*/}).here(),
-'variable scope'
-);
+});
 
 done_testing();
 
@@ -152,7 +49,7 @@ function TAP () {
 			ok(true, name);
 		} else {
 			ok(false, name);
-			console.log("# got:\n" + got.replace(/^/m, "# "));
+			console.log("# got:\n" + got.replace(/^/gm, "# "));
 			console.log("# expected:\n" + expected.replace(/^/m, "# "));
 		}
 	};

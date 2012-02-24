@@ -1,0 +1,106 @@
+=== empty
+--->
+
+=== nesting
+a,
+b {
+	l1 : foo;
+
+	c, d {
+		l2 : foo;
+		e, f {
+			l3 : foo;
+		}
+	}
+}
+--->
+a,
+b {
+l1 : foo;
+}
+a c,
+a d,
+b c,
+b d {
+l2 : foo;
+}
+a c e,
+a c f,
+a d e,
+a d f,
+b c e,
+b c f,
+b d e,
+b d f {
+l3 : foo;
+}
+
+=== mixin
+@mixin foo {
+	foo : bar;
+}
+
+a {
+	@include foo;
+}
+
+b {
+	@include foo;
+}
+--->
+a {
+foo : bar;
+}
+b {
+foo : bar;
+}
+
+=== mixin
+@mixin foo ($a, $b) {
+	foo : $a $b;
+}
+
+a {
+	@include foo(#000, #111);
+	@include foo(#000, rgba(0, 0, 0, 0.5));
+}
+--->
+a {
+foo : #000 #111;
+foo : #000 rgba(0, 0, 0, 0.5);
+}
+
+=== variable
+$foo : foo;
+$bar : bar;
+
+foo : $foo;
+bar : $bar;
+
+scope1 {
+	$foo : foo1;
+	foo : $foo;
+	bar : $bar;
+	scope2 {
+		$foo : foo2;
+		$bar : bar2;
+		foo : $foo;
+		bar : $bar;
+	}
+}
+
+foo : $foo;
+bar : $bar;
+--->
+foo : foo;
+bar : bar;
+scope1 {
+foo : foo1;
+bar : bar;
+}
+scope1 scope2 {
+foo : foo2;
+bar : bar2;
+}
+foo : foo;
+bar : bar;
