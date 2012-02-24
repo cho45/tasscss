@@ -1,7 +1,4 @@
 {
-  "modules": {
-    "tass": "./tass.js"
-  },
   "name": "tass",
   "keywords" : "SASS LESS CSS",
   "bin" : { "tass" : "./bin/tass" },
@@ -11,11 +8,11 @@
   },
   "directories": {
   },
-  "author": "cho45 <cho45@lowreal.net> (http:\/\/www.lowreal.net\/)",
+  "author": "cho45 <cho45@lowreal.net> (http://www.lowreal.net/)",
   "version": "0.1.1",
   "licenses": [
     {
-      "url": "http:\/\/github.com\/cho45\/jsdeferred\/blob\/master\/jsdeferred.js",
+      "url": "https://github.com/cho45/tasscss/blob/master/LICENSE",
       "type": "MIT"
     }
   ],
@@ -24,6 +21,6 @@
   "description": "Ultimate lightweight stylesheet language",
   "bugs": {
     "mail": "cho45@lowreal.net",
-    "web": "https://github.com/cho45/tasscss"
+    "url": "https://github.com/cho45/tasscss"
   }
 }
