@@ -122,3 +122,8 @@ foo : $foo;
 foo : foo;
 bar : bar;
 
+=== variable contains 2 or more ":"
+$a : "b : c";
+a : $a;
+--->
+a : "b : c";
