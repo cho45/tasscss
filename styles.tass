@@ -47,6 +47,7 @@
 
 
 html, body {
+	font-size: 12px;
 	margin: 0;
 	padding: 0;
 	color: #666;
@@ -85,6 +86,13 @@ a.button { @include button; }
 
 	.w1 {
 		width: 940px;
+
+		section {
+			margin: 3em 0 0 0;
+			section {
+				margin: 2em 0 1em 0;
+			}
+		}
 	}
 
 	.w2 {
@@ -108,6 +116,7 @@ pre {
 	@include box-shadow(inset 0 0 100px rgba(0, 0, 0, 0.8));
 	@include border-radius(10px);
 
+	.Comment { color: #87d7d7; }
 	.Type { color: #afaf5f; font-weight: bold; }
 	.Special { color: #ffd7af; }
 	.Statement { color: #87d7af; font-weight: bold; }

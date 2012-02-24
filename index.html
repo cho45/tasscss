@@ -136,8 +136,8 @@ $ tass -watch style.tass:style.css
 
 
 								<pre>
-$ npm install tass
-$ tass style.tass > style.css
+<span class="Constant">$</span> npm install tass
+<span class="Constant">$</span> tass style.tass > style.css
 </pre>
 							</section>
 						</section>
@@ -153,22 +153,22 @@ $ tass style.tass > style.css
 									<h1>Definition</h1>
 									<p>Variable definition is by leading $ and written by property style. There must be no other leading characters exclude white-space.</p>
 									<pre>
-$varname : varvalue; /* ok */
+<span class="Identifier">$varname</span> : varvalue; <span class="Comment">/* ok */</span>
 
-foo { $varname : varvalue; } /* ng */
+foo <span class="Identifier">{</span> <span class="Identifier">$varname</span> : varvalue; <span class="Identifier">}</span> <span class="Comment">/* ng */</span>
 </pre>
 								</section>
 								<section>
 									<h1>Scope</h1>
 									<p>Braces creates new variable scope like following:</p>
 									<pre>
-$foo : foo;
-prop : $foo; /* foo */
-bar {
-	$foo : bar;
-	prop : $foo; /* bar */
-}
-prop : $foo; /* foo */
+<span class="Identifier">$foo</span> : foo;
+prop : <span class="Identifier">$foo</span>; <span class="Comment">/* foo */</span>
+bar <span class="Identifier">{</span>
+    <span class="Identifier">$foo</span> : bar;
+    prop : <span class="Identifier">$foo</span>; <span class="Comment">/* bar */</span>
+<span class="Identifier">}</span>
+prop : <span class="Identifier">$foo</span>; <span class="Comment">/* foo */</span>
 </pre>
 								</section>
 							</section>
@@ -176,23 +176,23 @@ prop : $foo; /* foo */
 								<h1>Mixins</h1>
 								<p>Mixins are defined by leading <code>@mixin mixin-name {</code> and end with <code>}</code>. There must be no any characters (includes white-space) before start mixin (<code>@mixin</code>) and end of mixin brace (<code>}</code>). And inner of a mixin must be indented.</p>
 								<pre>
-/* ok */
-@mixin mixin-name {
-	foobar {
-	}
-}
+<span class="Comment">/* ok */</span>
+<span class="PreProc">@mixin</span> mixin-name <span class="Identifier">{</span>
+    foobar <span class="Identifier">{</span>
+    <span class="Identifier">}</span>
+<span class="Identifier">}</span>
 
-/* ng */
- @mixin mixin-name {
-	foobar {
-	}
- }
+<span class="Comment">/* ng */</span>
+ <span class="PreProc">@mixin</span> mixin-name <span class="Identifier">{</span>
+    foobar <span class="Identifier">{</span>
+    <span class="Identifier">}</span>
+ <span class="Identifier">}</span>
 
-/* ng */
-@mixin mixin-name {
-foobar {
-}
-}
+<span class="Comment">/* ng */</span>
+<span class="PreProc">@mixin</span> mixin-name <span class="Identifier">{</span>
+foobar <span class="Identifier">{</span>
+<span class="Identifier">}</span>
+<span class="Identifier">}</span>
 </pre>
 							</section>
 						</section>
@@ -202,13 +202,13 @@ foobar {
 						<section class="w2">
 							<h1>Development</h1>
 							<pre>
-$ git clone git://github.com/cho45/tasscss.git
+<span class="Constant">$</span> git clone git://github.com/cho45/tasscss.git
 </pre>
-							<p>TASS is developed at <a href="https://github.com/cho45/tasscss">github</a>. Fork it and push-request.</p>
+							<p>TASS is developed at <a href="https://github.com/cho45/tasscss">github</a>. Fork it and send push-request.</p>
 						</section>
 						<section class="w2">
 							<h1>Bugs?</h1>
-							<p>Please report it to <a href="https://github.com/cho45/tasscss/issues">github issue</a> or fix and push-request.</p>
+							<p>Please report it to <a href="https://github.com/cho45/tasscss/issues">github issue</a> or fix and send push-request.</p>
 						</section>
 					</div>
 				</div>
