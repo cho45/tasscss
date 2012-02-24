@@ -21,7 +21,7 @@ var tests = fs.readFileSync('test/base.data', 'utf-8').split(/^===/mg).map(funct
 tests.shift();
 
 tests.forEach(function (test) {
-	var output = TASS(test.input);
+	var output = TASS(test.input).replace(/^\s*|\s*$/g, '');
 	if (output === test.expected) {
 		ok(true, test.name);
 	} else {

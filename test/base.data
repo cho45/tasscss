@@ -104,3 +104,17 @@ bar : bar2;
 }
 foo : foo;
 bar : bar;
+
+=== variables mixins continuation 1
+$foo : foo;
+@mixin mixin1 {
+	bar : bar;
+}
+--->
+=== variable mixins continuation 2
+foo : $foo;
+@include mixin1;
+--->
+foo : foo;
+bar : bar;
+
