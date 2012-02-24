@@ -26,6 +26,21 @@ for (var i = 0, len = args.length; i < len; i++) {
 	}
 }
 
+if (opts.files[0] == '-') {
+	process.stdin.resume();
+	process.stdin.setEncoding('utf8');
+
+	var css = '';
+	process.stdin.on('data', function (data) { css += data; });
+	process.stdin.on('end', function () {
+		console.log(TASS(css));
+	});
+} else {
+	opts.files.forEach(function (file) {
+		console.log(TASS(fs.readFileSync(file, 'utf-8')));
+	});
+}
+
 if (opts.watch) {
 	opts.watch.forEach(function (watch) {
 		var io = watch.split(':');
@@ -68,21 +83,6 @@ if (opts.watch) {
 			});
 		}
 	});
-} else {
-	if (opts.files[0] == '-') {
-		process.stdin.resume();
-		process.stdin.setEncoding('utf8');
-
-		var css = '';
-		process.stdin.on('data', function (data) { css += data; });
-		process.stdin.on('end', function () {
-			console.log(TASS(css));
-		});
-	} else {
-		opts.files.forEach(function (file) {
-			console.log(TASS(fs.readFileSync(file, 'utf-8')));
-		});
-	}
 }
 
 function log (type, format, args) {
