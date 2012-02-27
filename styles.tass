@@ -129,6 +129,32 @@ h1, h2, h3, h4, h5, h6 {
 	font-family: 'Voltaire', sans-serif;
 }
 
+.issues {
+	.issue {
+		color: #888;
+		@include border-radius(3px);
+		@include box-shadow(0 0 5px rgba(0, 0, 0, 0.5));
+		padding: 10px;
+		font-size: 12px;
+		margin: 0 0 10px;
+		background: #fff;
+
+		.title {
+			color: #000;
+			font-weight: bold;
+			text-decoration: none;
+		}
+
+		.author {
+			color: #000;
+
+			img {
+				margin: 5px 5px -3px 0;
+			}
+		}
+	}
+}
+
 #top {
 	font-family: 'Voltaire', sans-serif;
 	font-size: 300%;

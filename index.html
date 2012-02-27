@@ -211,6 +211,39 @@ foobar <span class="Identifier">{</span>
 							<p>Please report it to <a href="https://github.com/cho45/tasscss/issues">github issue</a> or fix and send push-request.</p>
 						</section>
 					</div>
+
+					<div class="line">
+						<section class="w2">
+							<h1>Active Issues</h1>
+							<script data-repos="cho45/tasscss" src="githubissue.js">
+								<div class="issues">
+								<% for (var i = 0, it; (it = data[i]); i++) { %>
+									<div class="issue <%= it.state %>">
+										<span class="number">#<%= it.number %></span>
+										<a href="<%= it.html_url %>" class="title"><%= it.title %></a>
+										by
+										<span class="author"><img src="<%= it.user.avatar_url %>" width="16" height="16"/><%= it.user.login %></span>
+									</div>
+								<% } %>
+								</div>
+							</script>
+						</section>
+						<section class="w2">
+							<h1>Fixed Issues</h1>
+							<script data-repos="cho45/tasscss" src="githubissue.js" data-state="closed">
+								<div class="issues">
+								<% for (var i = 0, it; (it = data[i]); i++) { %>
+									<div class="issue <%= it.state %>">
+										<span class="number">#<%= it.number %></span>
+										<a href="<%= it.html_url %>" class="title"><%= it.title %></a>
+										by
+										<span class="author"><img src="<%= it.user.avatar_url %>" width="16" height="16"/><%= it.user.login %></span>
+									</div>
+								<% } %>
+								</div>
+							</script>
+						</section>
+					</div>
 				</div>
 			</div>
 
