@@ -14,10 +14,9 @@
 	};
 
 	var repos = script.getAttribute('data-repos');
-	var sort  = script.getAttribute('data-sort') || 'updated';
-	var state = script.getAttribute('data-state') || 'open';
+	var api   = script.getAttribute('data-api');
 
-	var uri = 'https://api.github.com/repos/' + script.getAttribute('data-repos') + '/issues?sort=' + sort + '&state=' + state + '&direction=desc&callback=' + callback;
+	var uri = 'https://api.github.com/repos/' + repos + api + ';callback=' + callback;
 	var s = document.createElement('script');
 	s.type = 'text/javascript';
 	s.src = uri;

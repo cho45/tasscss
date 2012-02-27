@@ -155,6 +155,24 @@ h1, h2, h3, h4, h5, h6 {
 	}
 }
 
+.contributors {
+
+	.contributor {
+		display: inline-block;
+		padding: 10px 10px 10px 0;
+		text-decoration: none;
+		color: #666;
+
+		&:link {
+			text-decoration: none;
+		}
+
+		img {
+			margin: 5px 5px -3px 0;
+		}
+	}
+}
+
 #top {
 	font-family: 'Voltaire', sans-serif;
 	font-size: 300%;

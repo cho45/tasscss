@@ -215,7 +215,7 @@ foobar <span class="Identifier">{</span>
 					<div class="line" id="issues">
 						<section class="w2">
 							<h1>Active Issues</h1>
-							<script data-repos="cho45/tasscss" src="githubissue.js">
+							<script src="githubissue.js" data-repos="cho45/tasscss" data-api="/issues?sort=updated;state=open;direction=desc">
 								<div class="issues">
 								<% for (var i = 0, it; (it = data[i]); i++) { %>
 									<div class="issue <%= it.state %>">
@@ -230,7 +230,7 @@ foobar <span class="Identifier">{</span>
 						</section>
 						<section class="w2">
 							<h1>Fixed Issues</h1>
-							<script data-repos="cho45/tasscss" src="githubissue.js" data-state="closed">
+							<script src="githubissue.js" data-repos="cho45/tasscss" data-api="/issues?sort=updated;state=closed;direction=desc">
 								<div class="issues">
 								<% for (var i = 0, it; (it = data[i]); i++) { %>
 									<div class="issue <%= it.state %>">
@@ -239,6 +239,19 @@ foobar <span class="Identifier">{</span>
 										by
 										<span class="author"><img src="<%= it.user.avatar_url %>" width="16" height="16"/><%= it.user.login %></span>
 									</div>
+								<% } %>
+								</div>
+							</script>
+						</section>
+					</div>
+
+					<div class="line" id="contributors">
+						<section class="w2">
+							<h1>Contributors</h1>
+							<script src="githubissue.js" data-repos="cho45/tasscss" data-api="/contributors?">
+								<div class="contributors">
+								<% for (var i = 0, it; (it = data[i]); i++) { if (it.login == 'cho45') continue; %>
+								<a href="<%= it.url %>" class="contributor"><img src="<%= it.avatar_url %>" width="16" height="16"/><%= it.login %></a>
 								<% } %>
 								</div>
 							</script>
