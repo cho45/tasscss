@@ -1,0 +1,11 @@
+#content {
+	background: #efefef;
+	@include border-radius(10px);
+	padding: 10px;
+}
+
+#global-footer {
+	p {
+		text-align: center;
+	}
+}
