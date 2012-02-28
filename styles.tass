@@ -24,16 +24,10 @@
 }
 
 @mixin button {
-	-moz-box-shadow:inset 0px 1px 0px 0px #bbdaf7;
-	-webkit-box-shadow:inset 0px 1px 0px 0px #bbdaf7;
-	box-shadow:inset 0px 1px 0px 0px #bbdaf7;
-	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #57c1f2), color-stop(1, #178fb3) );
-	background:-moz-linear-gradient( center top, #57c1f2 5%, #178fb3 100% );
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#57c1f2', endColorstr='#178fb3');
-	background-color:#57c1f2;
-	-moz-border-radius:6px;
-	-webkit-border-radius:6px;
-	border-radius:6px;
+	@include box-shadow(inset 0px 1px 0px 0px #bbdaf7);
+	@include linear-gradient(#57c1f2, #447fae);
+	@include border-radius(6px);
+
 	border:1px solid #84bbf3;
 	display:inline-block;
 	color:#ffffff;
@@ -82,6 +76,10 @@ a.button { @include button; }
 		display: inline;
 		float: left;
 		margin: 0 10px;
+
+		.line {
+			margin: 0 -10px;
+		}
 	}
 
 	.w1 {
@@ -92,6 +90,10 @@ a.button { @include button; }
 			section {
 				margin: 2em 0 1em 0;
 			}
+		}
+
+		section.w2 {
+			margin: 0 10px;
 		}
 	}
 
@@ -138,9 +140,19 @@ h1, h2, h3, h4, h5, h6 {
 		font-size: 12px;
 		margin: 0 0 10px;
 		background: #fff;
+		position: relative;
+
+		.number {
+			position: absolute;
+			top: 0;
+			right: 10px;
+			font-weight: bold;
+			font-size: 30px;
+			color: #ccc;
+		}
 
 		.title {
-			color: #000;
+			color: #333;
 			font-weight: bold;
 			text-decoration: none;
 		}
@@ -161,7 +173,7 @@ h1, h2, h3, h4, h5, h6 {
 		display: inline-block;
 		padding: 10px 10px 10px 0;
 		text-decoration: none;
-		color: #666;
+		color: #333;
 
 		&:link {
 			text-decoration: none;
