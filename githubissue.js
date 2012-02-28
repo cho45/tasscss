@@ -13,10 +13,9 @@
 		container.innerHTML = tmpl(script.innerHTML, res);
 	};
 
-	var repos = script.getAttribute('data-repos');
 	var api   = script.getAttribute('data-api');
 
-	var uri = 'https://api.github.com/repos/' + repos + api + ';callback=' + callback;
+	var uri = 'https://api.github.com/' + api + ';callback=' + callback;
 	var s = document.createElement('script');
 	s.type = 'text/javascript';
 	s.src = uri;
