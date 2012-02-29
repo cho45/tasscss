@@ -168,3 +168,29 @@ $a : "b : c";
 a : $a;
 --->
 a : "b : c";
+
+=== @import 1
+@import "import1.tass";
+xxx;
+--->
+import: imported1;
+xxx;
+
+=== @import 2
+@import "import1.tass";
+@import "import2.tass";
+xxx;
+--->
+import: imported1;
+import: imported2;
+xxx;
+
+=== @import 3
+@import "import3.tass";
+xxx;
+--->
+import: imported3;
+import: imported1;
+import: imported2;
+xxx;
+

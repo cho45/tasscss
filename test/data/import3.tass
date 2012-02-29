@@ -1,0 +1,4 @@
+import: imported3;
+@import "import1.tass";
+@import "import2.tass";
+

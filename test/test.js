@@ -4,8 +4,14 @@ TAP();
 
 var fs = require('fs');
 var TASS = require('../lib/tass.js').TASS;
+TASS.read = function (path, callback) {
+	fs.readFile('test/data/' + path, 'utf-8', function (error, data) {
+		if (error) callback('/* ' + error + ' */');
+		callback(data);
+	});
+};
 
-var tests = fs.readFileSync('test/base.data', 'utf-8').split(/^===/mg).map(function (test, name) {
+var tests = fs.readFileSync('test/data/base.data', 'utf-8').split(/^===/mg).map(function (test, name) {
 	test = test.replace(/^(.+)/, '');
 	name = RegExp.$1;
 	test = test.split(/\s*--->\s*/).map(function (s) {
@@ -21,14 +27,16 @@ var tests = fs.readFileSync('test/base.data', 'utf-8').split(/^===/mg).map(funct
 tests.shift();
 
 tests.forEach(function (test) {
-	var output = TASS(test.input).replace(/^\s*|\s*$/g, '');
-	if (output === test.expected) {
-		ok(true, test.name);
-	} else {
-		ok(false, test.name);
-		console.log("# expected:\n" + test.expected.replace(/^/gm, "#   "));
-		console.log("# got:\n" + output.replace(/^/gm, "#   "));
-	}
+	TASS(test.input, function (output) {
+		output = output.replace(/^\s*|\s*$/g, '');
+		if (output === test.expected) {
+			ok(true, test.name);
+		} else {
+			ok(false, test.name);
+			console.log("# expected:\n" + test.expected.replace(/^/gm, "#   "));
+			console.log("# got:\n" + output.replace(/^/gm, "#   "));
+		}
+	});
 });
 
 done_testing();
@@ -56,9 +64,16 @@ function TAP () {
 		}
 	};
 	this.done_testing = function () {
-		var n = done_testing.n;
-		console.log('1..' + n);
-		process.exit(status);
+		var a;
+		process.on('exit', function () {
+			if (a) {
+				var n = done_testing.n;
+				console.log('1..' + n);
+			} else {
+				a = true;
+				process.exit(status);
+			} 
+		});
 	};
 	this.done_testing.n = 0;
 }
