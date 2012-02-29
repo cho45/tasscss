@@ -36,9 +36,11 @@ done_testing();
 
 function TAP () {
 	var util = require('util');
+	var status = 0;
 	this.ok = function (bool, name) {
 		done_testing.n++;
 		var r = bool ? 'ok' : 'not ok';
+		if (!bool) status++;
 		r += " " + done_testing.n;
 		console.log(name ? r + " # " + name : r);
 	};
@@ -56,6 +58,7 @@ function TAP () {
 	this.done_testing = function () {
 		var n = done_testing.n;
 		console.log('1..' + n);
+		process.exit(status);
 	};
 	this.done_testing.n = 0;
 }

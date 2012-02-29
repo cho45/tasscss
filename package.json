@@ -1,26 +1,29 @@
 {
-  "name": "tass",
-  "keywords" : "SASS LESS CSS",
-  "bin" : { "tass" : "./bin/tass" },
-  "repository": {
-    "url": "git://github.com/cho45/tasscss.git",
-    "type": "git"
-  },
-  "directories": {
-  },
-  "author": "cho45 <cho45@lowreal.net> (http://www.lowreal.net/)",
-  "version": "0.1.1",
-  "licenses": [
+    "name": "tass",
+    "version": "0.1.1",
+    "description": "Ultimate lightweight stylesheet language",
+    "homepage": "https://github.com/cho45/tasscss",
+    "keywords" : "SASS LESS CSS",
+    "author": "cho45 <cho45@lowreal.net> (http://www.lowreal.net/)",
+    "bin" : { "tass" : "./bin/tass" },
+    "repository": {
+        "url": "git://github.com/cho45/tasscss.git",
+        "type": "git"
+    },
+    "directories": {
+    },
+    "scripts" : {
+        "test": "node test/test.js"
+    },
+    "licenses": [
     {
-      "url": "https://github.com/cho45/tasscss/blob/master/LICENSE",
-      "type": "MIT"
+        "url": "https://github.com/cho45/tasscss/blob/master/LICENSE",
+        "type": "MIT"
     }
-  ],
-  "main": "tass",
-  "homepage": "https://github.com/cho45/tasscss",
-  "description": "Ultimate lightweight stylesheet language",
-  "bugs": {
-    "mail": "cho45@lowreal.net",
-    "url": "https://github.com/cho45/tasscss"
-  }
+    ],
+        "main": "tass",
+        "bugs": {
+            "mail": "cho45@lowreal.net",
+            "url": "https://github.com/cho45/tasscss"
+        }
 }
