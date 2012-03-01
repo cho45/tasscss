@@ -204,7 +204,7 @@ foobar <span class="Identifier">{</span>
 										<p>Mixins are defined by leading <code>@mixin mixin-name {</code> and end with <code>}</code>. There must be no any characters (includes white-space) before start mixin (<code>@mixin</code>) and end of mixin brace (<code>}</code>). And inner of a mixin must be indented.</p>
 									</section>
 									<section class="w2">
-										<h1>Parameters</h1>
+										<h1>Use mixins</h1>
 										<pre>
 <span class="PreProc">@mixin</span> linear-gradient (<span class="Identifier">$color1</span>, <span class="Identifier">$color2</span>) <span class="Identifier">{</span>
   background: <span class="Identifier">$color1</span>;
@@ -224,9 +224,23 @@ foobar <span class="Identifier">{</span>
   <span class="PreProc">@include</span> linear-gradient(<span class="Constant">#333</span>, <span class="Constant">#666</span>);
 <span class="Identifier">}</span>
 </pre>
-										<p>Mixins can take some parameters which is parted by comma. You can pass the parameters at @include.</p>
+										<p>Mixins can used by <code>@include</code> and take some parameters which is parted by comma and assigned by <code>@include($args)</code>.</p>
 									</section>
 								</div>
+							</section>
+							<section>
+								<h1>Include external files</h1>
+								<pre>
+<span class="Comment">/* This is var.tass */</span>
+<span class="Identifier">$foo</span>: bar;
+</pre>
+								<pre>
+<span class="PreProc">@include</span> var.tass;
+<span class="Statement">body</span> <span class="Identifier">{</span>
+    foo: <span class="Identifier">$foo</span>;
+<span class="Identifier">}</span>
+</pre>
+								<p><code>@include</code> can take filename like above.</p>
 							</section>
 						</section>
 					</div>
@@ -238,6 +252,7 @@ foobar <span class="Identifier">{</span>
 <span class="Constant">$</span> git clone git://github.com/cho45/tasscss.git
 </pre>
 							<p>TASS is developed at <a href="https://github.com/cho45/tasscss">github</a>. Fork it and send push-request.</p>
+							<p><img src="https://secure.travis-ci.org/cho45/tasscss.png?branch=master"/></p>
 						</section>
 					</div>
 
