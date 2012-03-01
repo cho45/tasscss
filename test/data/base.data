@@ -1,6 +1,52 @@
 === empty
 --->
 
+
+=== nesting
+a {
+	foo: a;
+	b {
+		foo: b;
+		c {
+			foo: c;
+		}
+	}
+}
+--->
+a {
+foo: a;
+}
+a b {
+foo: b;
+}
+a b c {
+foo: c;
+}
+
+=== nesting
+a, b {
+	foo: a;
+	b {
+		foo: b;
+		c {
+			foo: c;
+		}
+	}
+}
+--->
+a,
+b {
+foo: a;
+}
+a b,
+b b {
+foo: b;
+}
+a b c,
+b b c {
+foo: c;
+}
+
 === nesting
 a,
 b {
@@ -19,20 +65,195 @@ b {
 l1 : foo;
 }
 a c,
-a d,
 b c,
+a d,
 b d {
 l2 : foo;
 }
 a c e,
-a c f,
-a d e,
-a d f,
 b c e,
-b c f,
+a d e,
 b d e,
+a c f,
+b c f,
+a d f,
 b d f {
 l3 : foo;
+}
+
+=== nesting
+a, b {
+	1;
+	a, b, c {
+		2;
+		d {
+			3;
+		}
+	}
+
+	e, f, g {
+		4;
+		h {
+			5;
+		}
+	}
+}
+--->
+a,
+b {
+1;
+}
+a a,
+b a,
+a b,
+b b,
+a c,
+b c {
+2;
+}
+a a d,
+b a d,
+a b d,
+b b d,
+a c d,
+b c d {
+3;
+}
+a e,
+b e,
+a f,
+b f,
+a g,
+b g {
+4;
+}
+a e h,
+b e h,
+a f h,
+b f h,
+a g h,
+b g h {
+5;
+}
+
+=== nesting
+a, b, c {
+	1;
+	a, b, c {
+		2;
+	}
+
+	e, f, g {
+		4;
+	}
+
+	h, i, j {
+		4;
+		k, l, m {
+			4;
+		}
+
+		n, o, p {
+			4;
+		}
+	}
+}
+--->
+a,
+b,
+c {
+1;
+}
+a a,
+b a,
+c a,
+a b,
+b b,
+c b,
+a c,
+b c,
+c c {
+2;
+}
+a e,
+b e,
+c e,
+a f,
+b f,
+c f,
+a g,
+b g,
+c g {
+4;
+}
+a h,
+b h,
+c h,
+a i,
+b i,
+c i,
+a j,
+b j,
+c j {
+4;
+}
+a h k,
+b h k,
+c h k,
+a i k,
+b i k,
+c i k,
+a j k,
+b j k,
+c j k,
+a h l,
+b h l,
+c h l,
+a i l,
+b i l,
+c i l,
+a j l,
+b j l,
+c j l,
+a h m,
+b h m,
+c h m,
+a i m,
+b i m,
+c i m,
+a j m,
+b j m,
+c j m {
+4;
+}
+a h n,
+b h n,
+c h n,
+a i n,
+b i n,
+c i n,
+a j n,
+b j n,
+c j n,
+a h o,
+b h o,
+c h o,
+a i o,
+b i o,
+c i o,
+a j o,
+b j o,
+c j o,
+a h p,
+b h p,
+c h p,
+a i p,
+b i p,
+c i p,
+a j p,
+b j p,
+c j p {
+4;
 }
 
 === mixin
@@ -169,28 +390,33 @@ a : $a;
 --->
 a : "b : c";
 
-=== @import 1
-@import "import1.tass";
+=== @include file;
+@include include1.tass;
 xxx;
 --->
-import: imported1;
+include: included1;
 xxx;
 
-=== @import 2
-@import "import1.tass";
-@import "import2.tass";
+=== @include 2
+@include include1.tass;
+@include include2.tass;
 xxx;
 --->
-import: imported1;
-import: imported2;
+include: included1;
+include: included2;
 xxx;
 
-=== @import 3
-@import "import3.tass";
+=== @include 3
+@include include3.tass;
 xxx;
 --->
-import: imported3;
-import: imported1;
-import: imported2;
+include: included3;
+include: included1;
+include: included2;
 xxx;
+
+=== @include with plain css
+@include include.css;
+--->
+$foo: "this is plain css";
 

@@ -1,0 +1,28 @@
+#!/usr/bin/env perl
+
+use v5.14;
+use warnings;
+
+use Path::Class;
+
+my ($ma, $mi, $ri) = file('package.json')->slurp =~ m/"version": "(\d+)\.(\d+)\.(\d+)"/;
+say "Current version: $ma.$mi,$ri";
+$ri++;
+
+print "Next version [$ma.$mi.$ri]: ";
+my $VERSION = (<> =~ s/\s+//rg) || "$ma.$mi.$ri";
+
+#say file('package.json')->slurp =~ s/"version": ".+?"/"version": "$VERSION"/r;
+#say file('LICENSE')->slurp =~ s/(\@version\s+).+/\1$VERSION/r;
+#say file('lib/tass.js')->slurp =~ s/(TASS\.version\s*=\s*)".+?"/\1"$VERSION"/r;
+#
+print "Realy want to publish [$VERSION] to npm? [yN]: ";
+if (<> =~ /y/i) {
+	say "Publishing...";
+#system('npm publish');
+#system("git tag $VERSION");
+#system("git push --tags");
+#system("git push");
+} else {
+	say "Canceled";
+}

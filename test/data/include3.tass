@@ -1,0 +1,4 @@
+include: included3;
+@include include1.tass;
+@include include2.tass;
+

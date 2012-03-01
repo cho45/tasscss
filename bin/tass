@@ -22,9 +22,24 @@ for (var i = 0, len = args.length; i < len; i++) {
 		console.error('Unknown option: ' + args[i]);
 		process.exit(1);
 	} else {
-		opts.files.push(args[i]);
+		opts.files.push(path.resolve(args[i]));
 	}
 }
+
+var cd = path.resolve('.');
+
+function setDirectory (dir) {
+	dir = path.resolve(dir);
+	TASS.read = function (name, callback) {
+		name = path.resolve(dir, name);
+		fs.readFile(name, 'utf-8', function (error, data) {
+			if (error) callback('/* ' + error + ' */');
+			callback(data);
+		});
+	};
+}
+
+setDirectory(cd);
 
 if (opts.files[0] == '-') {
 	process.stdin.resume();
@@ -33,11 +48,12 @@ if (opts.files[0] == '-') {
 	var css = '';
 	process.stdin.on('data', function (data) { css += data; });
 	process.stdin.on('end', function () {
-		console.log(TASS(css));
+		TASS(css, console.log)
 	});
 } else {
 	opts.files.forEach(function (file) {
-		console.log(TASS(fs.readFileSync(file, 'utf-8')));
+		setDirectory(path.dirname(file));
+		TASS(fs.readFileSync(file, 'utf-8'), console.log);
 	});
 }
 
@@ -67,8 +83,10 @@ if (opts.watch) {
 						log('change', key);
 						var name = key.replace(/\.tass$/, '.css');
 						var file = path.join(output, name);
-						fs.writeFileSync(file, TASS(fs.readFileSync(path.join(input, key), 'utf-8')), 'utf-8');
-						log('compiled', '%s => %s', key, file);
+						TASS(fs.readFileSync(path.join(input, key), 'utf-8'), function (css) {
+							fs.writeFileSync(file, css, 'utf-8');
+							log('compiled', '%s => %s', key, file);
+						})
 					}
 				}
 				files = current;
@@ -78,8 +96,10 @@ if (opts.watch) {
 			fs.watch(input, function (e) {
 				if (e != 'change') return;
 				log('change', input);
-				fs.writeFileSync(output, TASS(fs.readFileSync(input, 'utf-8')), 'utf-8');
-				log('compiled', '%s => %s', input, output);
+				TASS(fs.readFileSync(input, 'utf-8'), function (css) {
+					fs.writeFileSync(output, css, 'utf-8');
+					log('compiled', '%s => %s', input, output);
+				})
 			});
 		}
 	});
